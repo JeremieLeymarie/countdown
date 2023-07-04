@@ -28,15 +28,7 @@ const secondsToReadableTime = (sec: number) => {
   const minutes = Math.floor((sec % 3600) / 60);
   const seconds = Math.floor(sec % 60);
 
-  const dDisplay = days > 0 ? days + (days == 1 ? " day, " : " days, ") : "";
-  const hDisplay =
-    hours > 0 ? hours + (hours == 1 ? " hour, " : " hours, ") : "";
-  const mDisplay =
-    minutes > 0 ? minutes + (minutes == 1 ? " minute, " : " minutes, ") : "";
-  const sDisplay =
-    seconds > 0 ? seconds + (seconds == 1 ? " second" : " seconds") : "";
-
-  return `${dDisplay} ${hDisplay} ${mDisplay} ${sDisplay}`;
+  return { days, hours, minutes, seconds };
 };
 
 export default function Home() {
@@ -48,7 +40,7 @@ export default function Home() {
     if (!interval) {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       interval = setInterval(() => {
-        setCountDown((prev) => prev - 1);
+        setCountDown(getRemainingTime());
       }, 1000);
     }
 
@@ -56,5 +48,20 @@ export default function Home() {
       if (interval) clearInterval(interval);
     };
   }, []);
-  return <div>{countDown}</div>;
+  const { days, hours, minutes, seconds } = secondsToReadableTime(countDown);
+  return (
+    <div
+      style={{
+        display: "flex",
+        width: "100vw",
+        height: "100vh",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <div>
+        {days} days, {hours} hours, {minutes} minutes {seconds} seconds
+      </div>
+    </div>
+  );
 }
