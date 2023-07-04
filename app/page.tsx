@@ -57,11 +57,13 @@ export default function Home() {
         height: "100vh",
         justifyContent: "center",
         alignItems: "center",
+        flexDirection: "column",
       }}
     >
       <div>
         {days} days, {hours} hours, {minutes} minutes {seconds} seconds
       </div>
+      <div>Courage ma xo ♥️</div>
     </div>
   );
 }
