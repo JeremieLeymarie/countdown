@@ -20,7 +20,6 @@ export const WORKING_DAYS = [
   new Date("08/02/2023"),
   new Date("08/03/2023"),
   new Date("08/04/2023"),
-  new Date("08/04/2023"),
   new Date("08/07/2023"),
   new Date("08/08/2023"),
   new Date("08/09/2023"),
@@ -28,4 +27,4 @@ export const WORKING_DAYS = [
   new Date("08/11/2023"),
 ];
 
-export const WORK_DURATION_HOURS = 7;
+export const WORK_DURATION_HOURS = 8;

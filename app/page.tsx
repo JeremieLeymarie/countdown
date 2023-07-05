@@ -6,15 +6,17 @@ import { useEffect, useState } from "react";
 const getRemainingTime = () => {
   const today = new Date();
   const remainingDays = WORKING_DAYS.filter((date) => today < date);
-  const isTodayAWorkingDay = WORKING_DAYS.find(
-    (date) => today.getTime() === date.getTime()
+  const isTodayAWorkingDay = !!WORKING_DAYS.find(
+    (date) => today.toDateString() === date.toDateString()
   );
-
   let remainingSeconds = remainingDays.length * WORK_DURATION_HOURS * 60 * 60;
   const endOfDay = new Date();
   endOfDay.setHours(17);
   endOfDay.setMinutes(30);
-  if (isTodayAWorkingDay && today < endOfDay) {
+  const startOfDay = new Date();
+  startOfDay.setHours(9);
+  startOfDay.setMinutes(30);
+  if (isTodayAWorkingDay && today <= endOfDay && today >= startOfDay) {
     const timeRemainingToday = (endOfDay.getTime() - today.getTime()) / 1000;
     remainingSeconds += timeRemainingToday;
   }
@@ -61,7 +63,7 @@ export default function Home() {
       }}
     >
       <div>
-        {days} days, {hours} hours, {minutes} minutes {seconds} seconds
+        {days} days, {hours} hours, {minutes} minutes
       </div>
       <div>Courage ma xo ♥️</div>
     </div>
