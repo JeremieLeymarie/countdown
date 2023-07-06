@@ -65,7 +65,7 @@ export default function Home() {
       <div>
         {days} days, {hours} hours, {minutes} minutes
       </div>
-      <div>Bravo pour ton entretien, tu vas tout niquer ♥️</div>
+      <div>Courage ma xo ♥️</div>
     </div>
   );
 }
